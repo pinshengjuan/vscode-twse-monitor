@@ -16,7 +16,7 @@ export class Stock extends vscode.TreeItem {
 
     const mdTooltip = new vscode.MarkdownString();
     mdTooltip.appendMarkdown(`
-公司:             ${info.name}\n<h1>
+公司:             ${info.name}\n
 代號:             ${info.ticker}\n
 漲停:             ${info.highStop}\n
 跌停:             ${info.lowStop}\n
