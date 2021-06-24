@@ -122,9 +122,9 @@ export function alignListItem(
 
   for (let i = 0; i < totalLength - sourceStringLength; i++) {
     if (fullWidth) {
-      dummySpaces = dummySpaces + "　"; //full width
+      dummySpaces += "　"; //full width
     } else {
-      dummySpaces = dummySpaces + " ";
+      dummySpaces += " ";
     }
   }
 
