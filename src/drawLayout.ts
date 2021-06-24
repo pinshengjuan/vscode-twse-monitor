@@ -1,9 +1,5 @@
 import * as vscode from "vscode";
-import {
-  fillingDummySpaces,
-  IndividualSecurities,
-  alignListItem,
-} from "./utils";
+import { IndividualSecurities, alignListItem } from "./utils";
 
 export class Stock extends vscode.TreeItem {
   list: IndividualSecurities;
