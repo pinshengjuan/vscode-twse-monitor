@@ -47,6 +47,7 @@ export function twseApi(stockConfig: StockConfig): Promise<Array<Stock>> {
         low: jsonDataPrefix.l,
         highStop: +jsonDataPrefix.u,
         lowStop: +jsonDataPrefix.w,
+        changeRate: "",
         fiveBuy: [],
         fiveBuyAmount: [],
         fiveSell: [],
@@ -80,7 +81,7 @@ export function twseApi(stockConfig: StockConfig): Promise<Array<Stock>> {
 
         // Here we calculate changeRate
         resultStock.changeRate =
-          (resultStock.now - lastClose < 0 ? "-" : "") +
+          (resultStock.now - lastClose < 0 ? "-" : " ") +
           ((Math.abs(resultStock.now - lastClose) / lastClose) * 100)
             .toFixed(2)
             .toString() +
@@ -112,20 +113,23 @@ export function twseApi(stockConfig: StockConfig): Promise<Array<Stock>> {
     resolve(resultArr);
   });
 }
-
-export function fillingDummySpaces(
-  source: string,
-  length: number,
-  left = true
+export function alignListItem(
+  sourceString: string,
+  totalLength: number,
+  fullWidth = false
 ): string {
-  while (source.length >= length) {
-    source = source.slice(0, source.length - 1);
+  const sourceStringLength: number = sourceString.length;
+  let dummySpaces: string = "";
+
+  for (let i = 0; i < totalLength - sourceStringLength; i++) {
+    if (fullWidth) {
+      dummySpaces = dummySpaces + "　"; //full width
+    } else {
+      dummySpaces = dummySpaces + " ";
+    }
   }
-  const addString = "  ".repeat(length - source.length);
-  if (left) {
-    return source + addString;
-  }
-  return addString + source;
+
+  return sourceString + dummySpaces;
 }
 
 export interface IndividualSecurities {
@@ -142,7 +146,7 @@ export interface IndividualSecurities {
   highStop: number; //漲停價
   lowStop: number; //跌停價
   changeAmount?: number; //漲跌金額
-  changeRate?: string; //漲跌趴數
+  changeRate: string; //漲跌趴數
   fiveBuy: number[]; //五檔買價
   fiveBuyAmount: number[]; //五檔買量
   fiveSell: number[]; //五檔賣價

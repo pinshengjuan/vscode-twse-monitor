@@ -1,14 +1,20 @@
 import * as vscode from "vscode";
-import { fillingDummySpaces, IndividualSecurities } from "./utils";
+import {
+  fillingDummySpaces,
+  IndividualSecurities,
+  alignListItem,
+} from "./utils";
 
 export class Stock extends vscode.TreeItem {
   list: IndividualSecurities;
   constructor(info: IndividualSecurities) {
     super(
       // use template literals
-      `${info.upDownSymbol} ${fillingDummySpaces(info.name, 10)} ${
-        info.changeRate
-      } ${info.now}`
+      `${info.upDownSymbol} ${alignListItem(
+        info.name,
+        9,
+        true //full width
+      )} ${alignListItem(info.changeRate, 10)} ${info.now}`
     );
     this.list = info;
 
