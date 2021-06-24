@@ -16,31 +16,36 @@ export class Stock extends vscode.TreeItem {
 
     const mdTooltip = new vscode.MarkdownString();
     mdTooltip.appendMarkdown(`
-公司:             ${info.name}\n
-代號:             ${info.ticker}\n
-漲停:             ${info.highStop}\n
-跌停:             ${info.lowStop}\n
-累積成交量:        ${info.totalVolume}\n
+${alignListItem("公司", 6, true)}      ${info.name}\n
+${alignListItem("代號", 6, true)}      ${info.ticker}\n
+${alignListItem("漲停價", 6, true)}     ${info.highStop}\n
+${alignListItem("跌停價", 6, true)}     ${info.lowStop}\n
+${alignListItem("累積成交量", 6, true)}  ${info.totalVolume}\n
 -----------------------------------------------------------------
-幅度:             ${info.changeRate}\n
-漲跌:             ${info.changeAmount}\n
-開盤:             ${info.todayOpen}\n
-昨收:             ${info.lastClose}\n
+${alignListItem("幅度", 6, true)}       ${info.changeRate}\n
+${alignListItem("漲跌", 6, true)}       ${info.changeAmount}\n
+${alignListItem("開盤", 6, true)}       ${info.todayOpen}\n
+${alignListItem("昨收", 6, true)}       ${info.lastClose}\n
 -----------------------------------------------------------------
-最高:             ${info.high}\n
-最低:             ${info.low}\n
+${alignListItem("最高", 6, true)}       ${info.high}\n
+${alignListItem("最低", 6, true)}       ${info.low}\n
 -----------------------------------------------------------------
 `);
     mdTooltip.appendCodeblock(
       `
- 買量 | 買價 | 賣價 | 賣量
------|------|-----|-----`,
+ 買量　  |　  買價　　|　  賣價　　|　賣量`,
       "javascript"
     );
 
     for (let i = 0; i < info.fiveBuyAmount.length; i++) {
       mdTooltip.appendCodeblock(
-        `${info.fiveBuyAmount[i]} | ${info.fiveBuy[i]} | ${info.fiveSell[i]} | ${info.fiveSellAmount[i]}`,
+        ` ${alignListItem(
+          info.fiveBuyAmount[i].toString(),
+          6
+        )} | ${alignListItem(info.fiveBuy[i].toString(), 8)} | ${alignListItem(
+          info.fiveSell[i].toString(),
+          8
+        )} |  ${alignListItem(info.fiveSellAmount[i].toString(), 6)}`,
         "javascript"
       );
     }
