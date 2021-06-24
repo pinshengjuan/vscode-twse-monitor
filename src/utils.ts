@@ -108,7 +108,6 @@ export function twseApi(stockConfig: StockConfig): Promise<Array<Stock>> {
         }
         resultArr.push(new Stock(resultStock));
       }
-      // } // valid stock code
     }
     resolve(resultArr);
   });
