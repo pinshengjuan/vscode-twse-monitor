@@ -1,0 +1,4 @@
+1. Make sure README.md had been editted.
+2. open CMD with Administrator and change directory to this project
+3. execute "npm i -g vsce"
+4. execute "vsce package --yarn"
