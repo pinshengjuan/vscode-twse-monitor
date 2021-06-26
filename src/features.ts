@@ -29,7 +29,7 @@ export class StockResource {
     const config = vscode.workspace.getConfiguration().get("twse-monitor", {});
     const result = await twseApi(config);
 
-    //Here we update now price on settings.json
+    //Here we update now(jsonDataPrefix.z) price on settings.json
     const insertStockObj: { [key: string]: number } = {};
     result.forEach((stockInfo) => {
       if (stockInfo) {
