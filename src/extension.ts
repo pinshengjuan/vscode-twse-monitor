@@ -18,7 +18,7 @@ export function activate(context: ExtensionContext) {
       nodeProvider.addToList();
     }),
     commands.registerCommand("twse-monitor.item.remove", (stock) => {
-      nodeProvider.remove(stock);
+      nodeProvider.removeFromList(stock);
     })
   ); // subscriptions
 }

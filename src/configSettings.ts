@@ -53,7 +53,7 @@ export class StockProvider implements vscode.TreeDataProvider<Stock> {
     }
   }
 
-  remove(stock: { list: IndividualSecurities }) {
+  removeFromList(stock: { list: IndividualSecurities }) {
     const { list } = stock;
     this.resource.removeConfig(list.searchTicker);
     this._onDidChangeTreeData.fire();
