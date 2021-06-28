@@ -9,9 +9,11 @@ export class StockProvider implements vscode.TreeDataProvider<Stock> {
   readonly onDidChangeTreeData: vscode.Event<Stock | undefined | void> =
     this._onDidChangeTreeData.event;
   private resource: StockResource;
+  public removeTickerFlag: Boolean;
 
-  constructor(resource: StockResource) {
+  constructor(resource: StockResource, removeTickerFlag: Boolean) {
     this.resource = resource;
+    this.removeTickerFlag = removeTickerFlag;
   }
 
   getTreeItem(element: Stock): vscode.TreeItem {
@@ -19,7 +21,7 @@ export class StockProvider implements vscode.TreeDataProvider<Stock> {
   }
 
   getChildren(): Promise<Array<Stock>> {
-    return this.resource.getWatchingList();
+    return this.resource.getWatchingList(this.removeTickerFlag);
   }
 
   async addToList() {

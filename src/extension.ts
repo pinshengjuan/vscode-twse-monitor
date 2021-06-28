@@ -5,7 +5,8 @@ import { StockResource } from "./features";
 
 export function activate(context: ExtensionContext) {
   const stockResource = new StockResource();
-  const nodeProvider = new StockProvider(stockResource);
+  let removeTickerFlag: Boolean = false;
+  const nodeProvider = new StockProvider(stockResource, removeTickerFlag);
 
   setInterval(() => {
     nodeProvider._onDidChangeTreeData.fire();
@@ -18,6 +19,7 @@ export function activate(context: ExtensionContext) {
       nodeProvider.addToList();
     }),
     commands.registerCommand("twse-monitor.item.remove", (stock) => {
+      removeTickerFlag = true;
       nodeProvider.removeFromList(stock);
     })
   ); // subscriptions
