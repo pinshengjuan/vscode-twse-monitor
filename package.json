@@ -2,7 +2,7 @@
   "name": "twse-monitor",
   "displayName": "TWSE - Taiwan stock monitor",
   "description": "",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "pinshengjuan",
   "engines": {
     "vscode": "^1.52.0"
