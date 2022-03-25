@@ -10,7 +10,7 @@ export function activate(context: ExtensionContext) {
 
   setInterval(() => {
     nodeProvider._onDidChangeTreeData.fire();
-  }, 2 * 1000);
+  }, 10 * 1000);
 
   window.registerTreeDataProvider("twse-monitor", nodeProvider);
 
